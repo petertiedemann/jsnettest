@@ -12,8 +12,13 @@ using NiL.JS.Core;
 namespace jsnettest {
   public class Program {
 
-    public static object HelloFromScript( string s ) {
-      return new object[] { s, 42.5d, 500m };
+    public static ExpandoObject HelloFromScript( string s ) {
+      dynamic obj = new ExpandoObject();
+      obj.String = s;
+      obj.Double = 42.5d;
+      obj.Decimal = 500m;
+
+      return obj;
     }
 
     public static void Main( string[] args ) {
@@ -22,12 +27,12 @@ namespace jsnettest {
         var module = new Module(
 
           @"
-var s = foo( 'peter' )[0];
-var double = foo( 'peter' )[1];
-var decimal = foo( 'peter' )[2];
+var s = foo( 'peter' ).String;
+var double = foo( 'peter' ).Double
+var decimal = foo( 'peter' ).Decimal;
 console.log(s + ' ' + double + ' ' + decimal );"
 );
-        module.Context.DefineGetSetVariable( "foo", () => (Func<string,object>) HelloFromScript, o => { } );
+        module.Context.DefineGetSetVariable( "foo", () => (Func<string,ExpandoObject>) HelloFromScript, o => { } );
         module.Run();
       }
       catch ( JSException e ) {

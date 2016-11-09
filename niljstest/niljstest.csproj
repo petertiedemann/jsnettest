@@ -33,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NiL.JS, Version=2.4.995.0, Culture=neutral, PublicKeyToken=f1426dd7ad77fce3, processorArchitecture=MSIL">
-      <HintPath>packages\NiL.JS.2.4.995.0\lib\net45\NiL.JS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +49,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="niljs\NiL.JS\NiL.JS.csproj">
+      <Project>{f703d739-bcfa-4515-a963-c95651cb1ec4}</Project>
+      <Name>NiL.JS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
